@@ -40,7 +40,9 @@ const entry = {
     'lodash',
     'moment',
     'moment-timezone',
-    'scriptjs'
+    'scriptjs',
+    'react',
+    'react-dom'
   ]
 };
 
@@ -71,7 +73,7 @@ const indexHtmlConfig = {
   title: 'Amp Demo',
   template: 'src/index.pug',
   filename: 'index.html',
-  inject: 'head'
+  inject: 'body'
 };
 
 /**
@@ -93,31 +95,7 @@ const jsLoaders = [{
   test: /\.js$/,
   exclude: /node_modules/,
   use: [
-    isProd ? {
-      loader: 'babel-loader', options: {
-        plugins: [
-          'transform-es2015-template-literals',
-          'transform-es2015-literals',
-          'transform-es2015-function-name',
-          'transform-es2015-arrow-functions',
-          'transform-es2015-block-scoped-functions',
-          'transform-es2015-classes',
-          'transform-es2015-object-super',
-          'transform-es2015-shorthand-properties',
-          'transform-es2015-computed-properties',
-          'transform-es2015-for-of',
-          'transform-es2015-sticky-regex',
-          'transform-es2015-unicode-regex',
-          'check-es2015-constants',
-          'transform-es2015-spread',
-          'transform-es2015-parameters',
-          'transform-es2015-destructuring',
-          'transform-es2015-block-scoping',
-          'transform-es2015-typeof-symbol',
-          ['transform-regenerator', {'async': false, 'asyncGenerators': false}]
-        ]
-      }
-    } : 'happypack/loader',
+    'babel-loader',
     'import-glob'
   ]
 }, {
@@ -152,15 +130,8 @@ const testLoaders = [
   }
 ];
 
-const ngAnnotateLoader = {
-  test: /\.js$/,
-  exclude: /node_modules/,
-  loader: ['ng-annotate-loader'],
-  enforce: 'post'
-};
-
 // eslint-disable-next-line no-extra-parens
-jsLoaders.push(...(isTest ? testLoaders : [ngAnnotateLoader]));
+isTest && jsLoaders.push(...testLoaders);
 
 const scssLoaderList = [
   {
@@ -172,7 +143,9 @@ const scssLoaderList = [
   {
     loader: 'css-loader',
     options: {
-      sourceMap: true
+      sourceMap: true,
+      modules: true,
+      camelCase: true
     }
   },
   {
@@ -242,9 +215,9 @@ const plugins = [
   new DashboardPlugin(),
   new webpack.ProvidePlugin(globals),
   new webpack.EnvironmentPlugin(envWhiteList),
-  new HtmlWebpackPlugin(indexHtmlConfig),
-  isProd ? new ExtractTextPlugin('styles.[hash].css') : new HappyPack({loaders: ['babel-loader?presets[]=es2015']})
+  new HtmlWebpackPlugin(indexHtmlConfig)
 ];
+isProd && plugins.push(new ExtractTextPlugin('styles.[hash].css'));
 !isTest && plugins.unshift(
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',

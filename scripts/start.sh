@@ -8,4 +8,4 @@ export START_SERVER="true";
 
 [[ "$@" == "mock" ]] && export MOCK="true";
 
-node_modules/webpack-dev-server/bin/webpack-dev-server.js
+webpack-dashboard -- node_modules/webpack-dev-server/bin/webpack-dev-server.js
