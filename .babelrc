@@ -1,0 +1,15 @@
+{
+  "presets": ["es2015", "react"],
+  "plugins": [
+    "transform-runtime",
+    "transform-decorators-legacy",
+    "transform-class-properties",
+    ["module-resolver", {
+      "root": ["./src", "./src/lib", "./cloned-modules", "./"],
+      "alias": {
+        "assets": "./src/assets/",
+        "testing": "./testing/"
+      }
+    }]
+  ]
+}
