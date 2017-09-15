@@ -40,12 +40,14 @@
   },
   "homepage": "https://github.com/mathiasarmstrong/fornacis#readme",
   "dependencies": {
+    "highcharts-heatmap": "^0.1.2",
     "lodash": "^4.17.4",
     "moment-timezone": "^0.5.13",
     "nodesass": "0.0.2-security",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-highcharts": "^12.0.0",
+    "react-redux": "^5.0.6",
     "scriptjs": "^2.5.8"
   },
   "devDependencies": {
