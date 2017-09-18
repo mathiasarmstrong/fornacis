@@ -1,7 +1,6 @@
 const _ = require('lodash');
 const path = require('path');
 const webpack = require('webpack');
-const HappyPack = require('happypack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const {envVariables, sandboxUrl, prodUrl} = require('./conf.js');
@@ -65,7 +64,8 @@ const devServerOptions = {
 
 const globals = {
   moment: 'moment-timezone',
-  _: 'lodash'
+  _: 'lodash',
+  'React': 'react'
 };
 
 const envWhiteList = {'CONFIG': false, 'MOCK': false, 'NODE_ENV': false};
