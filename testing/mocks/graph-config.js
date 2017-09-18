@@ -1,3 +1,4 @@
+import Highcharts from 'highcharts';
 
 export const line = {
 
@@ -100,4 +101,164 @@ export const heatmap = {
     }
   }]
 
+};
+
+export const stackedBarChart = {
+  chart: {
+    type: 'column'
+  },
+  title: {
+    text: 'Volume Share'
+  },
+  xAxis: {
+    categories: ['8/25/2017', '8/26/2017', '8/27/2017', '8/28/2017', '8/29/2017', '8/30/2017']
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: 'Total Volume'
+    }
+  },
+  tooltip: {
+    pointFormat:
+      `<span>
+        <span style="color:{series.color};">
+        •
+        </span>{series.name}
+      </span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>`,
+    shared: true
+  },
+  plotOptions: {
+    column: {
+      stacking: 'percent'
+    }
+  },
+  series: [{
+    name: 'Ampush Hubble',
+    data: [158, 173, 184, 147, 172, 155],
+    color: '#FDBF63'
+  }, {
+    name: 'Insider Envy',
+    data: [23, 16, 23, 28, 22, 22],
+    color: '#FED598'
+  }]
+};
+export const stackedGroupedBarChart = {
+
+  chart: {
+    type: 'column'
+  },
+
+  title: {
+    text: 'Total fruit consumtion, grouped by gender'
+  },
+
+  xAxis: {
+    categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+  },
+
+  yAxis: {
+    allowDecimals: false,
+    min: 0,
+    title: {
+      text: 'Number of fruits'
+    }
+  },
+
+  tooltip: {
+    formatter() {
+      return `<b>${ this.x }</b><br/>${
+        this.series.name }: ${ this.y }<br/>` +
+                `Total: ${ this.point.stackTotal}`;
+    }
+  },
+
+  plotOptions: {
+    column: {
+      stacking: 'normal'
+    }
+  },
+
+  series: [{
+    name: 'John',
+    data: [5, 3, 4, 7, 2],
+    stack: 'male'
+  }, {
+    name: 'Joe',
+    data: [3, 4, 4, 2, 5],
+    stack: 'male'
+  }, {
+    name: 'Jane',
+    data: [2, 5, 6, 2, 1],
+    stack: 'female'
+  }, {
+    name: 'Janet',
+    data: [3, 0, 4, 4, 3],
+    stack: 'female'
+  }]
+};
+
+export const barAndLine = {
+  chart: {
+    zoomType: 'xy'
+  },
+  title: {
+    text: 'Purchase vs APM'
+  },
+  subtitle: {
+    text: ''
+  },
+  xAxis: [{
+    categories: ['25-Aug-17', '26-Aug-17', '27-Aug-17', '28-Aug-17', '29-Aug-17', '30-Aug-17'],
+    crosshair: true
+  }],
+  yAxis: [{ // Primary yAxis
+    labels: {
+      style: {
+        color: Highcharts.getOptions().colors[0]
+      }
+    },
+    title: {
+      text: 'Purchases',
+      style: {
+        color: Highcharts.getOptions().colors[0]
+      }
+    }
+  }, { // Secondary yAxis
+    title: {
+      text: 'APM',
+      style: {
+        color: Highcharts.getOptions().colors[1]
+      }
+    },
+    min: 0,
+    labels: {
+      style: {
+        color: Highcharts.getOptions().colors[1]
+      }
+    },
+    opposite: true
+  }],
+  tooltip: {
+    shared: true
+  },
+  legend: {
+    layout: 'vertical',
+    align: 'left',
+    x: 50,
+    verticalAlign: 'top',
+    y: 50,
+    floating: true,
+    backgroundColor: Highcharts.theme && Highcharts.theme.legendBackgroundColor || '#FFFFFF'
+  },
+  series: [{
+    name: 'Purchases',
+    type: 'column',
+    data: [181, 189, 207, 175, 194, 177]
+  }, {
+    name: 'APM',
+    type: 'line',
+    yAxis: 1,
+    data: [18.046, 16.772, 19.153, 16.391, 15.484, 19.732]
+  }]
 };
