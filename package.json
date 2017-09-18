@@ -42,6 +42,7 @@
   "dependencies": {
     "highcharts-heatmap": "^0.1.2",
     "lodash": "^4.17.4",
+    "material-ui": "^1.0.0-beta.10",
     "moment-timezone": "^0.5.13",
     "nodesass": "0.0.2-security",
     "react": "^15.6.1",

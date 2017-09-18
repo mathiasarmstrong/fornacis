@@ -139,6 +139,8 @@
     "quote-props": 0,
     "quotes": [2, "single", {"avoidEscape": true}],
     "radix": 0,
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
     "semi": 2,
     "sort-vars": 0,
     "space-after-keywords": [0, "always"],
@@ -156,6 +158,7 @@
     "yoda": [2, "never"]
   },
   "globals": {
+    "React": true,
     "ga": true,
     "module": true,
     "inject": true,

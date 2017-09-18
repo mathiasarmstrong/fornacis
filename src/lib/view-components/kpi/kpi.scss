@@ -1,0 +1,21 @@
+$white: #fff;
+$kpi-bg: #226794;
+
+.container {
+  display: flex;
+  margin-bottom: .5rem;
+  margin-top: .5rem;
+  padding: 0;
+}
+
+.kpi-item {
+  border: 1px solid $kpi-bg;
+  margin: 0.5em;
+  background-color: $kpi-bg;
+  color: $white;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0%;
+  justify-content: center;
+  align-items: center;
+}
